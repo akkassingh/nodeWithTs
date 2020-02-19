@@ -30,21 +30,16 @@ app.use(bodyParser.json());
 
 routes(app);
 
-interface Name {
-  firstName: string;
+//generics 
+function nameCreator<T>(name: T): T {
+    return name;
 }
 
-//function using interface
-const nameCreator = (name: Name): string => {
-  return `Hello, ${name.firstName} `;
-};
-
-
-let myName = { firstName: 'akkas'};
+let myName = nameCreator<string>('akkas,');
 
 // serving static files
 app.use(express.static('public'));
 
 app.get('/', (req, res) => res.send(messages.messagePrint()));
 
-app.listen(Settings.PORT, () => console.log(nameCreator(myName), messages.messagePrint()));
+app.listen(Settings.PORT, () => console.log(myName, messages.messagePrint()));
