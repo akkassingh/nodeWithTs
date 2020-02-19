@@ -37,9 +37,22 @@ function nameCreator<T>(name: T): T {
 
 let myName = nameCreator<string>('akkas,');
 
+//declaration merging
+interface coder {
+  name: string,
+  skills: number
+}
+
+interface coder {
+  experience: number
+}
+
+//merged interfaces.
+let jscoder: coder = {name: "akkas",skills: 5, experience: 4 }
+
 // serving static files
 app.use(express.static('public'));
 
-app.get('/', (req, res) => res.send(messages.messagePrint()));
+app.get('/', (req, res) => res.send(jscoder));
 
 app.listen(Settings.PORT, () => console.log(myName, messages.messagePrint()));
